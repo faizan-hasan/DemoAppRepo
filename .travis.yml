@@ -76,6 +76,9 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_2040ac2a677b_key -iv $encrypted_2040ac2a677b_iv -in scripts.tar.enc -out scripts.tar -d
   - tar xvf scripts.tar
   - brew install xctool
+  - chmod +x scripts/travis/add-key.sh
+  - chmod +x scripts/travis/remove-key.sh
+  - chmod +x scripts/travis/testflight.sh
 before_script:
 - "./travis/scripts/add-key.sh"
 script:
