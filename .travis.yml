@@ -20,7 +20,7 @@ env:
   global:
   - APP_NAME="BuildAutomationApp"
   - 'DEVELOPER_NAME="${DEVELOPER_NAME}"'
-  - PROFILE_NAME="BuildAutomationApp"
+  - PROFILE_NAME="DistBuildAutomationApp"
 # xcode_workspace: BuildAutomationApp.xcworkspace
 # xcode_scheme: BuildAutomationApp
 # xcode_sdk: iphonesimulator12.4
