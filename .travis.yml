@@ -82,7 +82,7 @@ before_script:
 - "./scripts/travis/add-key.sh"
 script:
 - xcodebuild -list -project $WORKSPACE.xcodeproj
-- set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive | xcpretty
+- set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive -allowProvisioningUpdates | xcpretty
 after_success:
 # - "./travis/scripts/sign-and-upload.sh"
 after_script:
