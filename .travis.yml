@@ -14,42 +14,73 @@
 # script:
 # - set -o pipefail && xcodebuild clean test -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -destination "platform=iOS Simulator,name=iPhone 6 Plus" | xcpretty
 
+# language: swift
+# osx_image: xcode10.3
+# env:
+#   global:
+#   - APP_NAME="BuildAutomationApp"
+#   - 'DEVELOPER_NAME="${DEVELOPER_NAME}"'
+#   - PROFILE_NAME="Dist-BuildAutomationApp"
+# # xcode_workspace: BuildAutomationApp.xcworkspace
+# # xcode_scheme: BuildAutomationApp
+# # xcode_sdk: iphonesimulator12.4
+# # osx_image: xcode10.3
+# before_install:
+#   - openssl aes-256-cbc -K $encrypted_2040ac2a677b_key -iv $encrypted_2040ac2a677b_iv -in scripts.tar.enc -out scripts.tar -d
+#   - tar xvf scripts.tar
+#   - export LANG=en_US.UTF-8
+#   - brew update
+#   # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+#   # - gem install xcpretty -N --no-ri --no-doc
+#   # - pod repo update --silent
+#   - chmod +x scripts/travis/add-key.sh
+#   - chmod +x scripts/travis/remove-key.sh
+#   - chmod +x scripts/travis/testflight.sh
+# install: pod install
+# before_script:
+#   - scripts/travis/add-key.sh
+
+# script:
+#   - set -o pipefail && xcodebuild archive -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -configuration Release -derivedDataPath ./build -archivePath ./build/Products/BuildAutomationApp.xcarchive | xcpretty
+#   # - xcodebuild clean test -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -destination "platform=iOS Simulator,name=iPhone 6 Plus" | xcpretty
+#   # - xcodebuild clean build test -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -destination "platform=iOS Simulator,OS=12.1,name=iPhone 6" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+#   # - xcodebuild -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/BuildAutomationApp.xcarchive CODE_SIGNING_REQUIRED=NO
+#   # - xcodebuild -exportArchive -archivePath $PWD/build/BuildAutomationApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build
+
+# after_script:
+#   - ls
+#   - scripts/travis/remove-key.sh
+
+# after_success:
+# #   - scripts/travis/testflight.sh
+
+
+
+
 language: swift
 osx_image: xcode10.3
+xcode_sdk: iphonesimulator12.4
+
 env:
   global:
+  - LANG=en_US.UTF-8
+  - WORKSPACE="BuildAutomationApp.xcworkspace"
+  - SCHEME="BuildAutomationApp"
   - APP_NAME="BuildAutomationApp"
-  - 'DEVELOPER_NAME="${DEVELOPER_NAME}"'
-  - PROFILE_NAME="Dist-BuildAutomationApp"
-# xcode_workspace: BuildAutomationApp.xcworkspace
-# xcode_scheme: BuildAutomationApp
-# xcode_sdk: iphonesimulator12.4
-# osx_image: xcode10.3
+  - EMAILS="tester@mail, someone@mail"
+  - PROFILE_NAME="DistBuildAutomationApp"
+  - 'DEVELOPER_NAME="$DEV_NAME"'
+  matrix:
+  - DESTINATION="generic/platform=iOS" SDK="iphoneos"
 before_install:
   - openssl aes-256-cbc -K $encrypted_2040ac2a677b_key -iv $encrypted_2040ac2a677b_iv -in scripts.tar.enc -out scripts.tar -d
   - tar xvf scripts.tar
-  - export LANG=en_US.UTF-8
-  - brew update
-  # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  # - gem install xcpretty -N --no-ri --no-doc
-  # - pod repo update --silent
-  - chmod +x scripts/travis/add-key.sh
-  - chmod +x scripts/travis/remove-key.sh
-  - chmod +x scripts/travis/testflight.sh
-install: pod install
+  - gem install xctool
 before_script:
-  - scripts/travis/add-key.sh
-
+- "./travis/scripts/add-key.sh"
 script:
-  - set -o pipefail && xcodebuild archive -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -configuration Release -derivedDataPath ./build -archivePath ./build/Products/BuildAutomationApp.xcarchive | xcpretty
-  # - xcodebuild clean test -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -destination "platform=iOS Simulator,name=iPhone 6 Plus" | xcpretty
-  # - xcodebuild clean build test -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -destination "platform=iOS Simulator,OS=12.1,name=iPhone 6" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-  # - xcodebuild -workspace BuildAutomationApp.xcworkspace -scheme BuildAutomationApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/BuildAutomationApp.xcarchive CODE_SIGNING_REQUIRED=NO
-  # - xcodebuild -exportArchive -archivePath $PWD/build/BuildAutomationApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build
-
-after_script:
-  - ls
-  - scripts/travis/remove-key.sh
-
+- xctool clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
 after_success:
-#   - scripts/travis/testflight.sh
+# - "./travis/scripts/sign-and-upload.sh"
+after_script:
+- "./travis/scripts/remove-key.sh"
