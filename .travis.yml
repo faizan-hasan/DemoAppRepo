@@ -64,7 +64,7 @@ xcode_sdk: iphonesimulator12.4
 env:
   global:
   - LANG=en_US.UTF-8
-  - WORKSPACE="BuildAutomationApp.xcworkspace"
+  - WORKSPACE="BuildAutomationApp"
   - SCHEME="BuildAutomationApp"
   - APP_NAME="BuildAutomationApp"
   - EMAILS="tester@mail, someone@mail"
@@ -81,8 +81,8 @@ before_install:
 before_script:
 - "./scripts/travis/add-key.sh"
 script:
-- xcodebuild -list -project BuildAutomationApp.xcodeproj
-# - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+- xcodebuild -list -project $WORKSPACE.xcodeproj
+- set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive | xcpretty
 after_success:
 # - "./travis/scripts/sign-and-upload.sh"
 after_script:
