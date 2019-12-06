@@ -468,7 +468,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildAutomationApp/BuildAutomationApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T8WLPGSFGG;
 				INFOPLIST_FILE = BuildAutomationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -477,6 +478,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pumpjackdataworks.buildAutomationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BuildAutoDist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -488,7 +490,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildAutomationApp/BuildAutomationApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T8WLPGSFGG;
 				INFOPLIST_FILE = BuildAutomationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,6 +500,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pumpjackdataworks.buildAutomationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BuildAutoDist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -568,6 +572,19 @@
 			defaultConfigurationName = Release;
 		};
 		3900D0F32388280400FB1CA5 /* Build configuration list for PBXNativeTarget "BuildAutomationAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3900D0F42388280400FB1CA5 /* Debug */,
+				3900D0F52388280400FB1CA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3900D0CB2388280300FB1CA5 /* Project object */;
+}
+tion list for PBXNativeTarget "BuildAutomationAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3900D0F42388280400FB1CA5 /* Debug */,
