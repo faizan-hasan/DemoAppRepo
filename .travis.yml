@@ -24,9 +24,7 @@ before_script:
 script:
   - set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive | xcpretty
   - set -o pipefail && xcodebuild -exportArchive -archivePath ./build/Products/$WORKSPACE.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build/Products
-  - xcrun altool --upload-app -f ./build/Products/$WORKSPACE.ipa -u $DEV_UN -p $DEV_PA
-    cd ./build/Products
 after_success:
-- "./scripts/travis/sign-and-upload.sh"
+- "./scripts/travis/sign-and-upload.sh ./build/Products/$WORKSPACE.ipa"
 after_script:
 - "./scripts/travis/remove-key.sh"
