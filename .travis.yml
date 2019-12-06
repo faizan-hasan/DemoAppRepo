@@ -25,8 +25,8 @@ script:
   - xcodebuild -list -project $WORKSPACE.xcodeproj
   - set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive | xcpretty
   - set -o pipefail && xcodebuild -exportArchive -archivePath ./build/Products/$WORKSPACE.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build/Products
-  - ls ./build/Products
+  - cd ./build/Products
 after_success:
-# - "./travis/scripts/sign-and-upload.sh"
+- "./travis/scripts/sign-and-upload.sh"
 after_script:
 - "./scripts/travis/remove-key.sh"
