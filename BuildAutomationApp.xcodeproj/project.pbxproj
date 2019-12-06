@@ -466,10 +466,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 567F16B2902DF3FC7CB35033 /* Pods-BuildAutomationApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildAutomationApp/BuildAutomationApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T8WLPGSFGG;
 				INFOPLIST_FILE = BuildAutomationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,10 +491,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8887EDA681B13026D6B0B8E0 /* Pods-BuildAutomationApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildAutomationApp/BuildAutomationApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T8WLPGSFGG;
 				INFOPLIST_FILE = BuildAutomationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
