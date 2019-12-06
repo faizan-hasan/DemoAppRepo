@@ -55,8 +55,6 @@
 # #   - scripts/travis/testflight.sh
 
 
-
-
 language: swift
 osx_image: xcode10.3
 xcode_sdk: iphonesimulator12.4
