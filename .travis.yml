@@ -27,6 +27,6 @@ script:
   - set -o pipefail && xcodebuild -exportArchive -archivePath ./build/Products/$WORKSPACE.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build/Products
   - cd ./build/Products
 after_success:
-- "./travis/scripts/sign-and-upload.sh"
+- "./scripts/travis/sign-and-upload.sh"
 after_script:
 - "./scripts/travis/remove-key.sh"
