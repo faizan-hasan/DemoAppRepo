@@ -18,13 +18,13 @@ before_install:
   - tar xvf scripts.tar
   - chmod +x scripts/travis/add-key.sh
   - chmod +x scripts/travis/remove-key.sh
-  - chmod +x scripts/travis/sign-and-upload.sh
+  - chmod u+x scripts/travis/sign-and-upload.sh
 before_script:
   - "./scripts/travis/add-key.sh"
 script:
   - set -o pipefail && xcodebuild archive -workspace $WORKSPACE.xcworkspace -scheme $SCHEME -configuration Release -derivedDataPath ./build -archivePath ./build/Products/$WORKSPACE.xcarchive | xcpretty
   - set -o pipefail && xcodebuild -exportArchive -archivePath ./build/Products/$WORKSPACE.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build/Products
 after_success:
-- "./scripts/travis/sign-and-upload.sh ./build/Products/$WORKSPACE.ipa"
+- ./scripts/travis/sign-and-upload.sh ./build/Products/$WORKSPACE.ipa
 after_script:
 - "./scripts/travis/remove-key.sh"
