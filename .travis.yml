@@ -66,8 +66,8 @@ env:
   - SCHEME="BuildAutomationApp"
   - APP_NAME="BuildAutomationApp"
   - EMAILS="tester@mail, someone@mail"
-  - PROFILE_NAME="BuildAutomationApp"
-  - 'DEVELOPER_NAME="$DEV_NAME"'
+  - PROFILE_NAME="BuildAutoDist"
+  - 'DEVELOPER_NAME="$DEVELOPER_NAME"'
   matrix:
   - DESTINATION="generic/platform=iOS" SDK="iphoneos"
 before_install:
