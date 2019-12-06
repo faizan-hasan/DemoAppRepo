@@ -584,16 +584,3 @@
 	};
 	rootObject = 3900D0CB2388280300FB1CA5 /* Project object */;
 }
-tion list for PBXNativeTarget "BuildAutomationAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3900D0F42388280400FB1CA5 /* Debug */,
-				3900D0F52388280400FB1CA5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 3900D0CB2388280300FB1CA5 /* Project object */;
-}
