@@ -1,4 +1,4 @@
-
 scripts.tar
-scripts/*
+scripts/
 exportOptions.plist
+Podfile.lock
